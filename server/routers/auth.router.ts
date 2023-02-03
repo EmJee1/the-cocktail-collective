@@ -1,9 +1,39 @@
 import { z } from 'zod'
 import createRouter from '../utils/router.utils'
-import { hashString } from '../utils/encrypt.utils'
+import { compareHash, hashString } from '../utils/encrypt.utils'
 import { getUserByEmail, insertUser } from '../repositories/user.repository'
 
 const { POST, router } = createRouter()
+
+POST(
+	'/login',
+	z.object({
+		email: z.string().email(),
+		password: z.string(),
+	}),
+	async (req, res) => {
+		const user = await getUserByEmail(req.body.email)
+		if (!user) {
+			return res.status(404).json({
+				ok: false,
+				errors: ['That email address is not registered, please register'],
+			})
+		}
+
+		const pwdIsValid = compareHash(req.body.password, user.password)
+		if (!pwdIsValid) {
+			return res.status(401).json({
+				ok: false,
+				errors: ['The entered password for that account is incorrect'],
+			})
+		}
+
+		return res.status(200).json({
+			ok: true,
+			user,
+		})
+	}
+)
 
 POST(
 	'/register',
