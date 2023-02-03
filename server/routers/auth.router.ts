@@ -25,7 +25,7 @@ POST(
 			return notFound(res, 'There is no account registered with that email')
 		}
 
-		const pwdIsValid = compareHash(req.body.password, user.password)
+		const pwdIsValid = await compareHash(req.body.password, user.password)
 		if (!pwdIsValid) {
 			return unauthorized(res, 'The entered password is incorrect')
 		}
