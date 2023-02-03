@@ -3,6 +3,13 @@ import createRouter from '../utils/router.utils'
 import { compareHash, hashString } from '../utils/encrypt.utils'
 import { getUserByEmail, insertUser } from '../repositories/user.repository'
 import { signJwt } from '../utils/jsonwebtoken.utils'
+import {
+	conflict,
+	created,
+	notFound,
+	ok,
+	unauthorized,
+} from '../utils/response.utils'
 
 const { POST, router } = createRouter()
 
@@ -15,24 +22,17 @@ POST(
 	async (req, res) => {
 		const user = await getUserByEmail(req.body.email)
 		if (!user) {
-			return res.status(404).json({
-				ok: false,
-				errors: ['That email address is not registered, please register'],
-			})
+			return notFound(res, 'There is no account registered with that email')
 		}
 
 		const pwdIsValid = compareHash(req.body.password, user.password)
 		if (!pwdIsValid) {
-			return res.status(401).json({
-				ok: false,
-				errors: ['The entered password for that account is incorrect'],
-			})
+			return unauthorized(res, 'The entered password is incorrect')
 		}
 
 		const token = await signJwt(user)
 
-		return res.status(200).json({
-			ok: true,
+		return ok(res, {
 			token,
 		})
 	}
@@ -47,12 +47,7 @@ POST(
 	async (req, res) => {
 		const user = await getUserByEmail(req.body.email)
 		if (user) {
-			return res.status(409).json({
-				ok: false,
-				errors: [
-					'You are already registered with that email address, please log in',
-				],
-			})
+			return conflict(res, 'You are already registered with that email address')
 		}
 
 		const passwordHash = await hashString(req.body.password)
@@ -61,8 +56,7 @@ POST(
 			password: passwordHash,
 		})
 
-		return res.status(201).json({
-			ok: true,
+		return created(res, {
 			id: result.insertedId,
 		})
 	}
