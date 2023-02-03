@@ -4,6 +4,7 @@ import validateBodyMiddleware from '../middleware/validate-body.middleware'
 
 const httpVerbs = ['get', 'post', 'put', 'delete', 'patch', 'options'] as const
 
+type EndpointUrl = `/${string}`
 type HandlerWithValidatedBody<T> = (
 	req: Request<any, any, T>,
 	res: Response
@@ -14,7 +15,7 @@ export default function createRouter() {
 
 	const [GET, POST, PUT, DELETE, PATCH, OPTIONS] = httpVerbs.map(verb => {
 		return <T>(
-			url: string,
+			url: EndpointUrl,
 			schema: Schema<T>,
 			handler: HandlerWithValidatedBody<T>
 		) => {
