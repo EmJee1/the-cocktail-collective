@@ -35,7 +35,7 @@ let config: DotenvParseOutput
 
 async function getConfig() {
 	if (!config) {
-		const envFile = joinPath(__dirname, '..', '..', '.env')
+		const envFile = joinPath(__dirname, '..', '.env')
 		const envFileContents = await readFile(envFile)
 		config = parseDotenv(envFileContents)
 	}
