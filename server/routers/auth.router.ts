@@ -2,6 +2,7 @@ import { z } from 'zod'
 import createRouter from '../utils/router.utils'
 import { compareHash, hashString } from '../utils/encrypt.utils'
 import { getUserByEmail, insertUser } from '../repositories/user.repository'
+import { signJwt } from '../utils/jsonwebtoken.utils'
 
 const { POST, router } = createRouter()
 
@@ -28,9 +29,11 @@ POST(
 			})
 		}
 
+		const token = await signJwt(user)
+
 		return res.status(200).json({
 			ok: true,
-			user,
+			token,
 		})
 	}
 )
