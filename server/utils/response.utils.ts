@@ -12,20 +12,12 @@ export function noContent(res: Response) {
 	return res.sendStatus(204)
 }
 
-export function unauthorized(res: Response, error: string) {
-	return res.status(401).json({
-		error,
+const clientErrorStatusCodes = [400, 401, 404, 409] as const
+export const [badRequest, unauthorized, notFound, conflict] =
+	clientErrorStatusCodes.map(statusCode => {
+		return function (res: Response, error: string) {
+			return res.status(statusCode).json({
+				error,
+			})
+		}
 	})
-}
-
-export function notFound(res: Response, error: string) {
-	return res.status(404).json({
-		error,
-	})
-}
-
-export function conflict(res: Response, error: string) {
-	return res.status(409).json({
-		error,
-	})
-}
