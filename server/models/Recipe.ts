@@ -2,7 +2,7 @@ import { ObjectId, WithId } from 'mongodb'
 
 export interface Recipe {
 	name: string
-	imageUrl: string
+	imageUrl?: string
 	ingredients: Ingredient[]
 	steps: string[]
 	author: ObjectId

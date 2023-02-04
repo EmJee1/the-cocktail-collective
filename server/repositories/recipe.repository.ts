@@ -6,7 +6,7 @@ async function recipeCollection() {
 	return (await mongo()).collection<Recipe>(Collection.Recipes)
 }
 
-export async function createRecipe(recipe: Recipe) {
+export async function insertRecipe(recipe: Recipe) {
 	return (await recipeCollection()).insertOne(recipe)
 }
 
