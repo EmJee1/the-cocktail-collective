@@ -1,9 +1,9 @@
 import type { ObjectId } from 'mongodb'
 import type { User } from '../models/User'
-import mongo from './database'
+import mongo, { Collection } from './database'
 
 async function userCollection() {
-	return (await mongo()).collection<User>('users')
+	return (await mongo()).collection<User>(Collection.Users)
 }
 
 export async function insertUser(user: User) {

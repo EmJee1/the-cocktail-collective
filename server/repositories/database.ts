@@ -11,3 +11,8 @@ export default async function mongo() {
 
 	return client
 }
+
+export enum Collection {
+	Users = 'users',
+	Recipes = 'recipes',
+}
