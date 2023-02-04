@@ -3,6 +3,7 @@ import createRouter from '../utils/router.utils'
 import type { Recipe } from '../models/Recipe'
 import { noContent } from '../utils/response.utils'
 import { insertRecipe } from '../repositories/recipe.repository'
+import authenticated from '../middleware/authenticated.middleware'
 
 const { router, POST } = createRouter()
 
@@ -23,7 +24,8 @@ POST(
 		await insertRecipe(recipeRecord)
 
 		return noContent(res)
-	}
+	},
+	authenticated
 )
 
 export default router

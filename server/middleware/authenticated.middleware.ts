@@ -6,7 +6,7 @@ export default async function authenticated(
 	req: Request,
 	res: Response,
 	next: NextFunction
-) {
+): Promise<Response | void> {
 	const header = req.headers.authorization
 	if (!header) {
 		return unauthorized(res, 'You are not logged in')
