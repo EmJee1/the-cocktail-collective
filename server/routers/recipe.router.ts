@@ -23,7 +23,7 @@ GET(
 	'/:id',
 	{
 		params: z.object({
-			id: z.string().length(4),
+			id: z.string(),
 		}),
 	},
 	async (req, res) => {
