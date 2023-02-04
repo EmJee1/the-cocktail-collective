@@ -13,3 +13,7 @@ export async function insertRecipe(recipe: Recipe) {
 export async function getRecipe(recipeId: ObjectId) {
 	return (await recipeCollection()).findOne({ _id: recipeId })
 }
+
+export async function getRecipes() {
+	return (await recipeCollection()).find()
+}
