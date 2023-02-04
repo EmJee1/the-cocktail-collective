@@ -30,7 +30,7 @@ POST(
 			return unauthorized(res, 'The entered password is incorrect')
 		}
 
-		const token = await signJwt(user)
+		const token = await signJwt({ _id: user._id })
 
 		return ok(res, {
 			token,

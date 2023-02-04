@@ -1,6 +1,7 @@
 import { Request, Response, Router } from 'express'
 import { Schema } from 'zod'
 import validateBodyMiddleware from '../middleware/validate-body.middleware'
+import authenticated from '../middleware/authenticated.middleware'
 
 const httpVerbs = ['get', 'post', 'put', 'delete', 'patch', 'options'] as const
 
@@ -19,7 +20,7 @@ export default function createRouter() {
 			schema: Schema<T>,
 			handler: HandlerWithValidatedBody<T>
 		) => {
-			router[verb](url, validateBodyMiddleware(schema), handler)
+			router[verb](url, validateBodyMiddleware(schema), authenticated, handler)
 		}
 	})
 
