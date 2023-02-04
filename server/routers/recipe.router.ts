@@ -1,11 +1,24 @@
 import { z } from 'zod'
 import createRouter from '../utils/router.utils'
 import type { Recipe } from '../models/Recipe'
-import { noContent } from '../utils/response.utils'
-import { insertRecipe } from '../repositories/recipe.repository'
+import { noContent, notFound, ok } from '../utils/response.utils'
+import { getRecipe, insertRecipe } from '../repositories/recipe.repository'
 import authenticated from '../middleware/authenticated.middleware'
+import { ObjectId } from 'mongodb'
 
-const { router, POST } = createRouter()
+const { router, GET, POST } = createRouter()
+
+GET('/:id', z.any(), async (req, res) => {
+	const recipeId = new ObjectId(req.params.id)
+	const recipe = await getRecipe(recipeId)
+	if (!recipe) {
+		return notFound(res, 'That recipe does not exist')
+	}
+
+	return ok(res, {
+		recipe,
+	})
+})
 
 POST(
 	'/',
