@@ -8,24 +8,34 @@ import { ObjectId } from 'mongodb'
 
 const { router, GET, POST } = createRouter()
 
-GET('/:id', z.any(), async (req, res) => {
-	const recipeId = new ObjectId(req.params.id)
-	const recipe = await getRecipe(recipeId)
-	if (!recipe) {
-		return notFound(res, 'That recipe does not exist')
-	}
+GET(
+	'/:id',
+	{
+		params: z.object({
+			id: z.string().length(4),
+		}),
+	},
+	async (req, res) => {
+		const recipeId = new ObjectId(req.params.id)
+		const recipe = await getRecipe(recipeId)
+		if (!recipe) {
+			return notFound(res, 'That recipe does not exist')
+		}
 
-	return ok(res, {
-		recipe,
-	})
-})
+		return ok(res, {
+			recipe,
+		})
+	}
+)
 
 POST(
 	'/',
-	z.object({
-		name: z.string().min(2),
-		steps: z.array(z.string()),
-	}),
+	{
+		body: z.object({
+			name: z.string().min(2),
+			steps: z.array(z.string()),
+		}),
+	},
 	async (req, res) => {
 		const recipeRecord: Recipe = {
 			name: req.body.name,

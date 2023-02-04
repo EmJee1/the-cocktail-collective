@@ -15,10 +15,12 @@ const { POST, router } = createRouter()
 
 POST(
 	'/login',
-	z.object({
-		email: z.string().email(),
-		password: z.string(),
-	}),
+	{
+		body: z.object({
+			email: z.string().email(),
+			password: z.string(),
+		}),
+	},
 	async (req, res) => {
 		const user = await getUserByEmail(req.body.email)
 		if (!user) {
@@ -40,10 +42,12 @@ POST(
 
 POST(
 	'/register',
-	z.object({
-		email: z.string().email(),
-		password: z.string().min(6),
-	}),
+	{
+		body: z.object({
+			email: z.string().email(),
+			password: z.string().min(6),
+		}),
+	},
 	async (req, res) => {
 		const user = await getUserByEmail(req.body.email)
 		if (user) {

@@ -1,12 +1,13 @@
 import { NextFunction, Request, Response, Router } from 'express'
-import { Schema } from 'zod'
-import validateBodyMiddleware from '../middleware/validate-body.middleware'
+import validateRequest, {
+	ValidateSchemas,
+} from '../middleware/validate-request.middleware'
 
 const httpVerbs = ['get', 'post', 'put', 'delete', 'patch', 'options'] as const
 
 type EndpointUrl = `/${string}`
-type HandlerWithValidatedBody<T> = (
-	req: Request<any, any, T>,
+type HandlerWithValidatedRequest<Body, Params> = (
+	req: Request<Params, any, Body>,
 	res: Response
 ) => Response | Promise<Response>
 type MiddlewareHandler = (
@@ -19,13 +20,19 @@ export default function createRouter() {
 	const router = Router()
 
 	const [GET, POST, PUT, DELETE, PATCH, OPTIONS] = httpVerbs.map(verb => {
-		return <T>(
+		return <Body, Params>(
 			url: EndpointUrl,
-			schema: Schema<T>,
-			handler: HandlerWithValidatedBody<T>,
+			schema: ValidateSchemas<Body, Params>,
+			handler: HandlerWithValidatedRequest<Body, Params>,
 			...middleware: MiddlewareHandler[]
 		) => {
-			router[verb](url, validateBodyMiddleware(schema), ...middleware, handler)
+			router[verb](
+				url,
+				validateRequest(schema),
+				...middleware,
+				// @ts-ignore
+				handler
+			)
 		}
 	})
 
