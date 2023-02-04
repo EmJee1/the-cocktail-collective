@@ -1,10 +1,10 @@
 .env
 node_modules
 dist
-/build
+build
 .idea
-/.next/
-/out/
+.next/
+out/
 .vercel
 next-env.d.ts
 .DS_Store
