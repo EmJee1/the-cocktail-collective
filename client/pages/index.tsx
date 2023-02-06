@@ -1,7 +1,26 @@
 import Head from 'next/head'
-import { Card, Text, CardBody, Heading, Container } from '@chakra-ui/react'
+import {
+	Card,
+	Text,
+	CardBody,
+	CardHeader,
+	Heading,
+	Container,
+} from '@chakra-ui/react'
 
-export default function Home() {
+export interface Recipe {
+	name: string
+	imageUrl?: string
+	ingredients: string[]
+	steps: string[]
+	author: string
+}
+
+interface HomeProps {
+	recipes: Recipe[]
+}
+
+export default function Home({ recipes }: HomeProps) {
 	return (
 		<>
 			<Head>
@@ -16,15 +35,32 @@ export default function Home() {
 			<main>
 				<Container>
 					<Heading>Hello, pages!</Heading>
-					<Card>
-						<CardBody>
-							<Text>
-								View a summary of all your customers over the last month.
-							</Text>
-						</CardBody>
-					</Card>
+					{recipes.map(recipe => (
+						<Card>
+							<CardHeader>
+								<Heading size="md">{recipe.name}</Heading>
+							</CardHeader>
+							<CardBody>
+								{recipe.steps.map(step => (
+									<Text>{step}</Text>
+								))}
+							</CardBody>
+						</Card>
+					))}
 				</Container>
 			</main>
 		</>
 	)
+}
+
+export async function getStaticProps() {
+	const res = await fetch('http://localhost:8080/recipe')
+	const { recipes } = await res.json()
+
+	return {
+		revalidate: 60,
+		props: {
+			recipes,
+		},
+	}
 }
