@@ -30,12 +30,9 @@ export default function Home({ recipes }: HomeProps) {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main>
-				<Container>
-					<Heading>Hello, pages!</Heading>
-					<SimpleGrid
-						spacing={4}
-						templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
-					>
+				<Container maxW="7xl">
+					<Heading>The Cocktail Collective</Heading>
+					<SimpleGrid columns={3} spacing={4}>
 						{recipes.map(recipe => (
 							<LinkBox key={recipe._id.toString()}>
 								<Card>
