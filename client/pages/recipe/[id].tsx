@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { DbRecipe } from '@models/recipe'
 import { Heading } from '@chakra-ui/react'
