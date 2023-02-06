@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import createRouter from '../utils/router.utils'
-import type { Recipe } from '../models/Recipe'
+import type { Recipe } from '@models/recipe'
 import { noContent, notFound, ok } from '../utils/response.utils'
 import {
 	getRecipe,

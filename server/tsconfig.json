@@ -15,19 +15,23 @@
     ],
     /* Modules */
     "module": "commonjs",
-    "rootDir": "./",
+    //    "rootDir": "./",
     "moduleResolution": "node",
     "baseUrl": "./",
-    // "paths": {},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
+    "paths": {
+      "@models/*": [
+        "../models/*"
+      ]
+    },
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     "typeRoots": [
       "./node_modules/@types",
       "./types"
     ],
     /* Specify multiple folders that act like './node_modules/@types'. */
-//    "types": [
-//      "/types/express.index.d.ts",
-//    ],
+    //    "types": [
+    //      "/types/express.index.d.ts",
+    //    ],
     // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
     // "moduleSuffixes": [],                             /* List of file name suffixes to search when resolving a module. */
     // "resolveJsonModule": true,                        /* Enable importing .json files. */

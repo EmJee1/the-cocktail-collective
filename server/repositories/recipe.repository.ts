@@ -1,5 +1,5 @@
 import mongo, { Collection } from './database'
-import type { Recipe } from '../models/Recipe'
+import type { Recipe } from '@models/recipe'
 import type { ObjectId } from 'mongodb'
 
 async function recipeCollection() {
