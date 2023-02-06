@@ -37,7 +37,7 @@ export default function Home({ recipes }: HomeProps) {
 						templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
 					>
 						{recipes.map(recipe => (
-							<LinkBox key={recipe._id}>
+							<LinkBox key={recipe._id.toString()}>
 								<Card>
 									<CardHeader>
 										<Heading size="md">
