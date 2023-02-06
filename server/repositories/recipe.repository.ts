@@ -15,5 +15,5 @@ export async function getRecipe(recipeId: ObjectId) {
 }
 
 export async function getRecipes() {
-	return (await recipeCollection()).find()
+	return (await recipeCollection()).find().toArray()
 }
