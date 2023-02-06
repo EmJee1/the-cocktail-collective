@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import NextLink from 'next/link'
+import type { DbRecipe } from '@models/recipe'
 import {
 	Card,
 	Text,
@@ -6,18 +8,13 @@ import {
 	CardHeader,
 	Heading,
 	Container,
+	SimpleGrid,
+	LinkBox,
+	LinkOverlay,
 } from '@chakra-ui/react'
 
-export interface Recipe {
-	name: string
-	imageUrl?: string
-	ingredients: string[]
-	steps: string[]
-	author: string
-}
-
 interface HomeProps {
-	recipes: Recipe[]
+	recipes: DbRecipe[]
 }
 
 export default function Home({ recipes }: HomeProps) {
@@ -35,18 +32,29 @@ export default function Home({ recipes }: HomeProps) {
 			<main>
 				<Container>
 					<Heading>Hello, pages!</Heading>
-					{recipes.map(recipe => (
-						<Card>
-							<CardHeader>
-								<Heading size="md">{recipe.name}</Heading>
-							</CardHeader>
-							<CardBody>
-								{recipe.steps.map(step => (
-									<Text>{step}</Text>
-								))}
-							</CardBody>
-						</Card>
-					))}
+					<SimpleGrid
+						spacing={4}
+						templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
+					>
+						{recipes.map(recipe => (
+							<LinkBox>
+								<Card>
+									<CardHeader>
+										<Heading size="md">
+											<LinkOverlay as={NextLink} href={`/recipe/${recipe._id}`}>
+												{recipe.name}
+											</LinkOverlay>
+										</Heading>
+									</CardHeader>
+									<CardBody>
+										{recipe.steps.map(step => (
+											<Text>{step}</Text>
+										))}
+									</CardBody>
+								</Card>
+							</LinkBox>
+						))}
+					</SimpleGrid>
 				</Container>
 			</main>
 		</>
