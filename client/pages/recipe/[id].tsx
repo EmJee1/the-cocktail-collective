@@ -1,6 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { DbRecipe } from '@models/recipe'
-import { Heading } from '@chakra-ui/react'
 
 interface RecipeProps {
 	recipe: DbRecipe
@@ -9,7 +8,7 @@ interface RecipeProps {
 export default function Recipe({ recipe }: RecipeProps) {
 	return (
 		<>
-			<Heading>{recipe.name}</Heading>
+			<h1>{recipe.name}</h1>
 		</>
 	)
 }

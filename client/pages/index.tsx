@@ -1,18 +1,13 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import NextLink from 'next/link'
+import NextImage from 'next/image'
 import type { DbRecipe } from '@models/recipe'
-import {
-	Card,
-	Text,
-	CardBody,
-	Heading,
-	Container,
-	SimpleGrid,
-	LinkBox,
-	LinkOverlay,
-	Stack,
-} from '@chakra-ui/react'
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import Typography from '@mui/material/Typography'
+import { CardActionArea } from '@mui/material'
 
 interface HomeProps {
 	recipes: DbRecipe[]
@@ -31,34 +26,26 @@ export default function Home({ recipes }: HomeProps) {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main>
-				<Container maxW="7xl">
-					<Heading>The Cocktail Collective</Heading>
-					<SimpleGrid columns={3} spacing={4}>
+				<Container>
+					<Grid columns={3} spacing={4}>
 						{recipes.map(recipe => (
-							<LinkBox key={recipe._id.toString()}>
-								<Card>
-									<CardBody>
-										<Image
-											src="https://placekitten.com/300/300"
-											alt=""
-											width={300}
-											height={300}
-										/>
-										<Stack mt="6" spacing="3">
-											<Heading size="md">
-												<LinkOverlay
-													as={NextLink}
-													href={`/recipe/${recipe._id}`}
-												>
-													{recipe.name}
-												</LinkOverlay>
-											</Heading>
-										</Stack>
-									</CardBody>
-								</Card>
-							</LinkBox>
+							<Card>
+								<CardActionArea
+									href={`/recipe/${recipe._id}`}
+									component={NextLink}
+								>
+									<CardContent>
+										<Typography gutterBottom variant="h5">
+											{recipe.name}
+										</Typography>
+										{recipe.steps.map(step => (
+											<Typography variant="body1">{step}</Typography>
+										))}
+									</CardContent>
+								</CardActionArea>
+							</Card>
 						))}
-					</SimpleGrid>
+					</Grid>
 				</Container>
 			</main>
 		</>
