@@ -6,6 +6,7 @@ export enum ConfigItem {
 	MongoUrl = 'MONGODB_URL',
 	BcryptSaltRounds = 'BCRYPT_SALT_ROUNDS',
 	JwtSecret = 'JWT_SECRET',
+	GoogleCloudProject = 'GOOGLE_CLOUD_PROJECT',
 }
 
 export async function getConfigString(configItem: ConfigItem) {
