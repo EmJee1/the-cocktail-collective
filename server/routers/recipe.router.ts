@@ -1,6 +1,7 @@
+import { ObjectId } from 'mongodb'
 import { z } from 'zod'
-import createRouter from '../utils/router.utils'
 import type { Recipe } from '@models/recipe'
+import createRouter from '../utils/router.utils'
 import { noContent, notFound, ok } from '../utils/response.utils'
 import {
 	getRecipe,
@@ -8,7 +9,7 @@ import {
 	insertRecipe,
 } from '../repositories/recipe.repository'
 import authenticated from '../middleware/authenticated.middleware'
-import { ObjectId } from 'mongodb'
+import { STORAGE_BUCKET_URL } from '../utils/storage.utils'
 
 const { router, GET, POST } = createRouter()
 
@@ -45,12 +46,14 @@ POST(
 		body: z.object({
 			name: z.string().min(2),
 			steps: z.array(z.string()),
+			imageUrl: z.string().startsWith(STORAGE_BUCKET_URL),
 		}),
 	},
 	async (req, res) => {
 		const recipeRecord: Recipe = {
 			name: req.body.name,
 			steps: req.body.steps,
+			imageUrl: req.body.imageUrl,
 			ingredients: [],
 			author: req.userId,
 		}
