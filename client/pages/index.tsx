@@ -48,7 +48,7 @@ export default function Home({ recipes }: HomeProps) {
 												}}
 											>
 												<NextImage
-													src="https://placekitten.com/g/400/400"
+													src={recipe.imageUrl}
 													alt=""
 													fill
 													style={{ objectFit: 'cover' }}

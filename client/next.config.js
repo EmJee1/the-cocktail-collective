@@ -5,7 +5,8 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: 'placekitten.com',
+				hostname: 'storage.googleapis.com',
+				pathname: '/the-cocktail-collective-images/**',
 			},
 		],
 	},
