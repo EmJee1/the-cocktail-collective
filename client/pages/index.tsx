@@ -28,6 +28,9 @@ export default function Home({ recipes }: HomeProps) {
 			</Head>
 			<main>
 				<Container>
+					<Typography variant="h3" component="h1">
+						The Cocktail Collective
+					</Typography>
 					<Grid container spacing={2}>
 						{recipes.map(recipe => (
 							<Grid key={recipe._id.toString()} item xs={12} sm={6} md={4}>
