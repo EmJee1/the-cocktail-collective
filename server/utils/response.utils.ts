@@ -21,3 +21,12 @@ export const [badRequest, unauthorized, notFound, conflict] =
 			})
 		}
 	})
+
+const serverStatusCodes = [500] as const
+export const [internalServerError] = serverStatusCodes.map(statusCode => {
+	return function (res: Response) {
+		return res.status(statusCode).json({
+			error: 'Something went wrong on the server',
+		})
+	}
+})

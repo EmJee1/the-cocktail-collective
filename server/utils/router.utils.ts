@@ -9,12 +9,12 @@ type EndpointUrl = `/${string}`
 type HandlerWithValidatedRequest<Body, Params> = (
 	req: Request<Params, any, Body>,
 	res: Response
-) => Response | Promise<Response>
+) => undefined | Response | Promise<Response | undefined>
 type MiddlewareHandler = (
 	req: Request,
 	res: Response,
 	next: NextFunction
-) => Promise<void | Response>
+) => Promise<void | Response> | void
 
 export default function createRouter() {
 	const router = Router()

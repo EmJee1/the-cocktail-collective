@@ -8,6 +8,6 @@ const multerParse = multer({
 	},
 })
 
-export function parseImage(fieldName: string) {
+export default function parseImage(fieldName: string) {
 	return multerParse.single(fieldName)
 }
