@@ -4,6 +4,7 @@ import { Image } from './common'
 export interface Recipe {
 	name: string
 	image: Image
+	description?: string
 	ingredients: Ingredient[]
 	steps: string[]
 	author: ObjectId

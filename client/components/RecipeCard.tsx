@@ -35,6 +35,9 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
 					<Typography gutterBottom variant="h6">
 						{recipe.name}
 					</Typography>
+					{recipe.description && (
+						<Typography variant="body1">{recipe.description}</Typography>
+					)}
 				</CardContent>
 			</CardActionArea>
 		</Card>

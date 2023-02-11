@@ -50,6 +50,7 @@ POST(
 				url: z.string().startsWith(STORAGE_BUCKET_URL),
 				alt: z.string().optional(),
 			}),
+			description: z.string().optional(),
 		}),
 	},
 	async (req, res) => {
@@ -59,6 +60,7 @@ POST(
 			image: req.body.image,
 			ingredients: [],
 			author: req.userId,
+			description: req.body.description,
 		}
 
 		await insertRecipe(recipeRecord)
