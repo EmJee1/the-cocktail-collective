@@ -2,7 +2,7 @@ version: '3.7'
 services:
   mongodb:
     image: mongo
-    container_name: discord_mongodb
+    container_name: tct_mongodb
     ports:
       - "27017:27017"
     volumes:
