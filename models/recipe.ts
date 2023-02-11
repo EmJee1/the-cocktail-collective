@@ -1,8 +1,9 @@
 import { ObjectId, WithId } from 'mongodb'
+import { Image } from './common'
 
 export interface Recipe {
 	name: string
-	imageUrl: string
+	image: Image
 	ingredients: Ingredient[]
 	steps: string[]
 	author: ObjectId

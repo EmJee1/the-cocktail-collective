@@ -46,14 +46,17 @@ POST(
 		body: z.object({
 			name: z.string().min(2),
 			steps: z.array(z.string()),
-			imageUrl: z.string().startsWith(STORAGE_BUCKET_URL),
+			image: z.object({
+				url: z.string().startsWith(STORAGE_BUCKET_URL),
+				alt: z.string().optional(),
+			}),
 		}),
 	},
 	async (req, res) => {
 		const recipeRecord: Recipe = {
 			name: req.body.name,
 			steps: req.body.steps,
-			imageUrl: req.body.imageUrl,
+			image: req.body.image,
 			ingredients: [],
 			author: req.userId,
 		}
