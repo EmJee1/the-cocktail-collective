@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb'
 import { z } from 'zod'
-import type { Recipe } from '@models/recipe'
+import { type Recipe, Technique } from '@models/recipe'
 import createRouter from '../utils/router.utils'
 import { noContent, notFound, ok } from '../utils/response.utils'
 import {
@@ -51,6 +51,7 @@ POST(
 				alt: z.string().optional(),
 			}),
 			description: z.string().optional(),
+			technique: z.enum([Technique.Shaken, Technique.Stirred]),
 		}),
 	},
 	async (req, res) => {
@@ -61,6 +62,7 @@ POST(
 			ingredients: [],
 			author: req.userId,
 			description: req.body.description,
+			technique: req.body.technique,
 		}
 
 		await insertRecipe(recipeRecord)

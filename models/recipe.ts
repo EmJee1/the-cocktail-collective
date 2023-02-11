@@ -4,6 +4,7 @@ import { Image } from './common'
 export interface Recipe {
 	name: string
 	image: Image
+	technique: Technique
 	description?: string
 	ingredients: Ingredient[]
 	steps: string[]
@@ -20,8 +21,13 @@ export interface Volume {
 	value: number
 }
 
-export enum VolumeUnit {
+export const enum VolumeUnit {
 	Milliliter = 'ml',
+}
+
+export const enum Technique {
+	Shaken = 'shaken',
+	Stirred = 'stirred',
 }
 
 export type DbRecipe = WithId<Recipe>
