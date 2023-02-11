@@ -9,6 +9,7 @@ import parseImage from '../middleware/parse-image.middleware'
 import authenticated from '../middleware/authenticated.middleware'
 import { getBucket } from '../utils/storage.utils'
 import { generateId } from '../utils/uuid.utils'
+import logger from '../utils/logging.utils'
 
 const { router, POST } = createRouter()
 
@@ -26,8 +27,7 @@ POST(
 		const stream = file.createWriteStream()
 
 		stream.on('error', err => {
-			// TODO: move to a production-ready logger
-			console.error(err.message)
+			logger.error(err)
 			return internalServerError(res)
 		})
 

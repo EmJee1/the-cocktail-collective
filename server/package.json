@@ -4,14 +4,17 @@
   "main": "src/app.ts",
   "scripts": {
     "start": "tsc",
-    "dev": "nodemon"
+    "dev": "cross-env NODE_ENV=development nodemon"
   },
   "dependencies": {
+    "@google-cloud/logging-winston": "^5.3.0",
     "@google-cloud/storage": "^6.9.2",
+    "cross-env": "^7.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^5.0.0",
     "multer": "^1.4.5-lts.1",
+    "winston": "^3.8.2",
     "zod": "^3.20.2"
   },
   "devDependencies": {
