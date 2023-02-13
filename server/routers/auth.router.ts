@@ -44,6 +44,8 @@ POST(
 	'/register',
 	{
 		body: z.object({
+			firstName: z.string(),
+			lastName: z.string(),
 			email: z.string().email(),
 			password: z.string().min(6),
 		}),
@@ -56,6 +58,8 @@ POST(
 
 		const passwordHash = await hashString(req.body.password)
 		const result = await insertUser({
+			firstName: req.body.firstName,
+			lastName: req.body.lastName,
 			email: req.body.email,
 			password: passwordHash,
 		})
