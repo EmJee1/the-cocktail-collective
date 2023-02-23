@@ -6,7 +6,7 @@ let client: Db
 export default async function mongo() {
 	if (!client) {
 		const mongoUrl = await getConfigString(ConfigItem.MongoUrl)
-		client = new MongoClient(mongoUrl).db('discord')
+		client = new MongoClient(mongoUrl).db('the-cocktail-collective')
 	}
 
 	return client
