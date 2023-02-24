@@ -10,6 +10,7 @@ import {
 } from '../repositories/recipe.repository'
 import authenticated from '../middleware/authenticated.middleware'
 import { STORAGE_BUCKET_URL } from '../utils/storage.utils'
+import { uniqueSlug } from '../utils/slug.utils'
 
 const { router, GET, POST } = createRouter()
 
@@ -56,6 +57,7 @@ POST(
 	},
 	async (req, res) => {
 		const recipeRecord: Recipe = {
+			slug: uniqueSlug(req.body.name),
 			name: req.body.name,
 			steps: req.body.steps,
 			image: req.body.image,

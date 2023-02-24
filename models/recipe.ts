@@ -2,6 +2,7 @@ import { ObjectId, WithId } from 'mongodb'
 import { Image } from './common'
 
 export interface Recipe {
+	slug: string
 	name: string
 	image: Image
 	technique: Technique
