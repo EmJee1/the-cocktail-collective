@@ -30,8 +30,15 @@ export default function createRouter() {
 				url,
 				validateRequest(schema),
 				...middleware,
-				// @ts-ignore
-				handler
+				async (req, res, next) => {
+					// Catch asynchronous errors in the handler and pass them to the errorHandler middleware
+					try {
+						// @ts-ignore
+						return await handler(req, res)
+					} catch (err) {
+						next(err)
+					}
+				}
 			)
 		}
 	})

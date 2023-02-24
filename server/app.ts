@@ -5,6 +5,7 @@ import recipeRouter from './routers/recipe.router'
 import assetRouter from './routers/asset.router'
 import logger from './utils/logging.utils'
 import { Environment, isEnvironment } from './utils/environment.utils'
+import errorHandler from './middleware/error-handler.middleware'
 
 const app = express()
 
@@ -18,6 +19,8 @@ app.use(express.json())
 app.use('/auth', authRouter)
 app.use('/recipe', recipeRouter)
 app.use('/asset', assetRouter)
+
+app.use(errorHandler)
 
 const PORT = 8080
 app.listen(PORT, () => logger.info(`Listening on port ${PORT}`))
