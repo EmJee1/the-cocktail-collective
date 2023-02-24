@@ -25,6 +25,6 @@ export async function verifyJwt(token: string): Promise<TokenPayload> {
 	}
 
 	return {
-		_id: decoded._id,
+		_id: new ObjectId(decoded._id),
 	}
 }
