@@ -1,5 +1,10 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { DbRecipe } from '@models/recipe'
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
 
 interface RecipeProps {
 	recipe: DbRecipe
@@ -7,9 +12,18 @@ interface RecipeProps {
 
 export default function Recipe({ recipe }: RecipeProps) {
 	return (
-		<>
-			<h1>{recipe.name}</h1>
-		</>
+		<Container>
+			<Typography variant="h4" component="h1" sx={{ my: '2rem' }}>
+				{recipe.name}
+			</Typography>
+			<List>
+				{recipe.steps.map(step => (
+					<ListItem disableGutters key={step}>
+						<ListItemText primary={step} />
+					</ListItem>
+				))}
+			</List>
+		</Container>
 	)
 }
 
