@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb'
 import { z } from 'zod'
 import { type Recipe, Technique } from '@models/recipe'
 import createRouter from '../utils/router.utils'
@@ -29,8 +28,7 @@ GET(
 		}),
 	},
 	async (req, res) => {
-		const recipeId = new ObjectId(req.params.id)
-		const recipe = await getRecipe(recipeId)
+		const recipe = await getRecipe(req.params.id)
 		if (!recipe) {
 			return notFound(res, 'That recipe does not exist')
 		}
@@ -57,7 +55,7 @@ POST(
 	},
 	async (req, res) => {
 		const recipeRecord: Recipe = {
-			slug: uniqueSlug(req.body.name),
+			_id: uniqueSlug(req.body.name),
 			name: req.body.name,
 			steps: req.body.steps,
 			image: req.body.image,
