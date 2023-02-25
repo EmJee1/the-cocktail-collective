@@ -5,7 +5,7 @@
   "scripts": {
     "start": "tsc",
     "dev": "cross-env NODE_ENV=development nodemon",
-    "test": "npx jest .",
+    "test": "npx jest",
     "test:watch": "npx jest --watchAll ."
   },
   "dependencies": {
