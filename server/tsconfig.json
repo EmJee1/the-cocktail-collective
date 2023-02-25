@@ -18,11 +18,7 @@
     //    "rootDir": "./",
     "moduleResolution": "node",
     "baseUrl": "./",
-    "paths": {
-      "@models/*": [
-        "../models/*"
-      ]
-    },
+    "paths": {},
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     "typeRoots": [
       "./node_modules/@types",

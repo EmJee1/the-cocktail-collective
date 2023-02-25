@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import type { DbRecipe } from '@models/recipe'
+import type { DbRecipe } from 'models/recipe'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'

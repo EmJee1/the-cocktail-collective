@@ -1,5 +1,5 @@
 import type { ObjectId } from 'mongodb'
-import type { User } from '@models/user'
+import type { User } from 'models/user'
 import mongo, { Collection } from './database'
 
 async function userCollection() {

@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { type Recipe, Technique } from '@models/recipe'
+import { type Recipe, Technique } from 'models/recipe'
 import createRouter from '../utils/router.utils'
 import { noContent, notFound, ok } from '../utils/response.utils'
 import {

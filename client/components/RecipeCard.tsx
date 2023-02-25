@@ -5,7 +5,7 @@ import CardActionArea from '@mui/material/CardActionArea'
 import CardMedia from '@mui/material/CardMedia'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
-import { DbRecipe } from '@models/recipe'
+import { DbRecipe } from 'models/recipe'
 
 interface RecipeCardProps {
 	recipe: DbRecipe

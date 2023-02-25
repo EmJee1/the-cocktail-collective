@@ -1,5 +1,5 @@
 import mongo, { Collection } from './database'
-import type { Recipe } from '@models/recipe'
+import type { Recipe } from 'models/recipe'
 
 async function recipeCollection() {
 	return (await mongo()).collection<Recipe>(Collection.Recipes)

@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { DbRecipe } from '@models/recipe'
+import { DbRecipe } from 'models/recipe'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import List from '@mui/material/List'
