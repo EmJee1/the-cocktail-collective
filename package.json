@@ -9,8 +9,5 @@
   },
   "volta": {
     "node": "18.14.2"
-  },
-  "dependencies": {
-    "dotenv": "^16.0.3"
   }
 }
