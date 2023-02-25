@@ -29,10 +29,8 @@ export default function Recipe({ recipe }: RecipeProps) {
 
 export const getStaticProps: GetStaticProps = async context => {
 	const res = await fetch(`http://localhost:8080/recipe/${context.params!.id}`)
-	const body = await res.json()
-
-	const recipe = body.recipe
-	const notFound = !body.recipe
+	const { recipe } = await res.json()
+	const notFound = res.status === 404
 
 	return {
 		revalidate: 120,
