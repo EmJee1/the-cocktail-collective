@@ -8,6 +8,7 @@ import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
+import RecentlyViewedRecipes from '@/components/RecentlyViewedRecipes'
 
 interface RecipeProps {
 	recipe: DbRecipe
@@ -44,15 +45,7 @@ export default function Recipe({ recipe }: RecipeProps) {
 					</List>
 				</Grid>
 				<Grid item xs={12} md={4}>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquid
-						amet doloribus iste modi possimus quisquam quod reprehenderit sint
-						veniam! Ad amet animi doloremque ex ipsa, magnam quo! Autem cum
-						dicta enim nam quod repudiandae sit vitae! Animi doloremque facilis
-						fuga laudantium natus pariatur repellat unde? Excepturi, minus
-						totam? Consequatur distinctio ducimus error molestiae nihil non
-						possimus quisquam repudiandae ut?
-					</p>
+					<RecentlyViewedRecipes />
 				</Grid>
 			</Grid>
 		</Container>
