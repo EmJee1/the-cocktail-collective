@@ -1,9 +1,9 @@
 import { genSalt, hash, compare } from 'bcrypt'
-import { ConfigItem, getConfigNumber } from './config.utils'
+
+const SALT_ROUNDS = 10 as const
 
 export async function hashString(str: string) {
-	const saltRounds = await getConfigNumber(ConfigItem.BcryptSaltRounds)
-	const salt = await genSalt(saltRounds)
+	const salt = await genSalt(SALT_ROUNDS)
 	return hash(str, salt)
 }
 
