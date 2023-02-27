@@ -1,6 +1,6 @@
 import { sign, verify } from 'jsonwebtoken'
 import { ObjectId } from 'mongodb'
-import { ConfigItem, getConfigString } from './config.utils'
+import { getSecretString, Secret } from './secrets.utils'
 
 interface TokenPayload {
 	/**
@@ -10,14 +10,14 @@ interface TokenPayload {
 }
 
 export async function signJwt(payload: TokenPayload) {
-	const secret = await getConfigString(ConfigItem.JwtSecret)
+	const secret = await getSecretString(Secret.JwtSecret)
 	return sign(payload, secret, {
 		expiresIn: '10h',
 	})
 }
 
 export async function verifyJwt(token: string): Promise<TokenPayload> {
-	const secret = await getConfigString(ConfigItem.JwtSecret)
+	const secret = await getSecretString(Secret.JwtSecret)
 	const decoded = verify(token, secret)
 	// Expect payload to contain the user-id
 	if (typeof decoded === 'string' || !decoded._id) {
