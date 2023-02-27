@@ -1,5 +1,5 @@
 import { Storage } from '@google-cloud/storage'
-import { ConfigItem, getConfigString } from './config.utils'
+import { GOOGLE_CLOUD_PROJECT } from './constants.utils'
 
 // Google authentication is done via application default credentials
 // To set it up locally, follow the following guide:
@@ -9,10 +9,9 @@ const STORAGE_BUCKET = 'the-cocktail-collective-images' as const
 export const STORAGE_BUCKET_URL =
 	`https://storage.googleapis.com/${STORAGE_BUCKET}` as const
 
-export async function getBucket() {
-	const projectId = await getConfigString(ConfigItem.GoogleCloudProject)
+export function getBucket() {
 	const storage = new Storage({
-		projectId,
+		projectId: GOOGLE_CLOUD_PROJECT,
 	})
 
 	return storage.bucket(STORAGE_BUCKET)

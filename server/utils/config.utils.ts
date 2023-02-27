@@ -5,7 +5,6 @@ import { DotenvParseOutput, parse as parseDotenv } from 'dotenv'
 export enum ConfigItem {
 	MongoUrl = 'MONGODB_URL',
 	JwtSecret = 'JWT_SECRET',
-	GoogleCloudProject = 'GOOGLE_CLOUD_PROJECT',
 }
 
 export async function getConfigString(configItem: ConfigItem) {

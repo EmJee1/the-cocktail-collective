@@ -22,8 +22,7 @@ POST(
 		}
 
 		const filename = `${generateId()}${path.extname(req.file.originalname)}`
-		const bucket = await getBucket()
-		const file = bucket.file(filename)
+		const file = getBucket().file(filename)
 		const stream = file.createWriteStream()
 
 		stream.on('error', err => {
