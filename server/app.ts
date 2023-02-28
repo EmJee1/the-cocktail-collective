@@ -4,14 +4,16 @@ import authRouter from './routers/auth.router'
 import recipeRouter from './routers/recipe.router'
 import assetRouter from './routers/asset.router'
 import logger from './utils/logging.utils'
-import { Environment, isEnvironment } from './utils/environment.utils'
+import { valueForEnvironment } from './utils/environment.utils'
 import errorHandler from './middleware/error-handler.middleware'
 
 const app = express()
 
-const corsOriginUrl = isEnvironment(Environment.Development)
-	? 'http://localhost:3000'
-	: 'PROD_URL'
+const corsOriginUrl = valueForEnvironment({
+	development: 'http://localhost:3000',
+	test: 'TEST_URL',
+	production: 'PROD_URL',
+})
 
 app.use(cors({ origin: corsOriginUrl }))
 app.use(express.json())

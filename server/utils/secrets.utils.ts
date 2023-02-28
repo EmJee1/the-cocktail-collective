@@ -1,4 +1,4 @@
-import { Environment, isEnvironment } from './environment.utils'
+import { valueForEnvironment } from './environment.utils'
 import { getSecret as getDotenvSecret } from './dotenv.utils'
 import { getSecret as getSecretManagerSecret } from './secret-manager.utils'
 
@@ -13,9 +13,12 @@ export enum Secret {
 }
 
 export async function getSecretString(name: Secret) {
-	const payload = isEnvironment(Environment.Development)
-		? await getDotenvSecret(name)
-		: await getSecretManagerSecret(name)
+	const payload = await valueForEnvironment({
+		development: getDotenvSecret(name),
+		test: getDotenvSecret(name),
+		production: getSecretManagerSecret(name),
+	})
+
 	if (!payload) {
 		throw new Error(
 			`Expected type string for secret '${name}', received undefined`

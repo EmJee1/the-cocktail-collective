@@ -1,7 +1,6 @@
-import * as process from 'process'
-
 export enum Environment {
 	Production = 'production',
+	Test = 'test',
 	Development = 'development',
 }
 
@@ -10,6 +9,8 @@ export function getEnvironment() {
 	switch (env) {
 		case Environment.Development:
 			return Environment.Development
+		case Environment.Test:
+			return Environment.Test
 		case Environment.Production:
 			return Environment.Production
 		default:
@@ -17,7 +18,12 @@ export function getEnvironment() {
 	}
 }
 
+export function valueForEnvironment<T>(values: Record<Environment, T>) {
+	const env = getEnvironment()
+	return values[env]
+}
+
 export function isEnvironment(environment: Environment) {
-	const env = process.env.NODE_ENV
+	const env = getEnvironment()
 	return env === environment
 }
