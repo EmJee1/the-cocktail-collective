@@ -14,10 +14,10 @@ export enum Secret {
 
 export async function getSecretString(name: Secret) {
 	const payload = await valueForEnvironment({
-		development: getDotenvSecret(name),
-		test: getDotenvSecret(name),
-		production: getSecretManagerSecret(name),
-	})
+		development: () => getDotenvSecret(name),
+		test: () => getDotenvSecret(name),
+		production: () => getSecretManagerSecret(name),
+	})()
 
 	if (!payload) {
 		throw new Error(
