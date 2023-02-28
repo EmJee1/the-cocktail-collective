@@ -1,8 +1,9 @@
-name: Test & build the server
+name: Test & build the server & client
 'on':
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   test_build_and_lint:
@@ -12,3 +13,5 @@ jobs:
       - run: npm ci
       - run: npm run test -w server
       - run: npm run start -w server
+      - run: npm run lint -w client
+      - run: npm run build -w client
