@@ -1,5 +1,5 @@
 import { Storage } from '@google-cloud/storage'
-import { GOOGLE_CLOUD_PROJECT } from './constants.utils'
+import { GOOGLE_CLOUD_PROJECT_ID } from './constants.utils'
 
 // Google authentication is done via application default credentials
 // To set it up locally, follow the following guide:
@@ -11,7 +11,7 @@ export const STORAGE_BUCKET_URL =
 
 export function getBucket() {
 	const storage = new Storage({
-		projectId: GOOGLE_CLOUD_PROJECT,
+		projectId: GOOGLE_CLOUD_PROJECT_ID,
 	})
 
 	return storage.bucket(STORAGE_BUCKET)
