@@ -27,6 +27,7 @@ Provide links to external used tooling, like a Sketch, Jira, etc.
 
 - [WebStorm](https://www.jetbrains.com/webstorm/) or [Visual Studio Code](https://code.visualstudio.com/)
 - [Volta](https://docs.volta.sh/guide/getting-started) (recommended) or Node Version Manager ([Mac](https://github.com/nvm-sh/nvm) | [Windows](https://github.com/coreybutler/nvm-windows))
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
 - Access to the `the-cocktail-collective` Google project
 
@@ -38,6 +39,9 @@ Provide links to external used tooling, like a Sketch, Jira, etc.
 This is needed to authenticate for gcloud services like Cloud Storage.
 
 ```shell
+# Run the mongodb database locally with docker
+docker compose up -d
+
 # Make sure you are using the correct node version, Volta does this automatically
 # When using nvm, locate the `volta.node` key in `package.json` and set the version accordingly
 nvm use <version>
