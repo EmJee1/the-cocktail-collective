@@ -1,6 +1,7 @@
 import { SecretManagerServiceClient } from '@google-cloud/secret-manager'
 import { Secret } from './secrets.utils'
 import { GOOGLE_CLOUD_PROJECT_NUMBER } from './constants.utils'
+import logger from './logging.utils'
 
 // Google authentication is done via application default credentials
 // To set it up locally, follow the following guide:
@@ -17,6 +18,7 @@ export async function getSecret(secretName: Secret) {
 		return secretManagerMemCache[secretName]
 	}
 
+	logger.info(`Loading secret '${secretName}' from secret-manager`)
 	const [version] = await secretManager.accessSecretVersion({ name })
 	const payload = version.payload?.data?.toString()
 	if (payload) {
