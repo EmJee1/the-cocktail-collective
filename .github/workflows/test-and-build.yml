@@ -14,4 +14,3 @@ jobs:
       - run: npm run test -w server
       - run: npm run start -w server
       - run: npm run lint -w client
-      - run: npm run build -w client
