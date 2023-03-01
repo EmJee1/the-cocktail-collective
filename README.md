@@ -26,7 +26,8 @@ Provide links to external used tooling, like a Sketch, Jira, etc.
  -->
 
 - [WebStorm](https://www.jetbrains.com/webstorm/) or [Visual Studio Code](https://code.visualstudio.com/)
-- [Volta](https://docs.volta.sh/guide/getting-started) (recommended) or Node Version Manager ([Mac](https://github.com/nvm-sh/nvm) | [Windows](https://github.com/coreybutler/nvm-windows))
+- [Volta](https://docs.volta.sh/guide/getting-started) (recommended) or Node Version
+	Manager ([Mac](https://github.com/nvm-sh/nvm) | [Windows](https://github.com/coreybutler/nvm-windows))
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
 - Access to the `the-cocktail-collective` Google project
@@ -35,8 +36,9 @@ Provide links to external used tooling, like a Sketch, Jira, etc.
 
 <!-- How to install this project (after having the prerequisites)? -->
 
-1. [Setup application default credentials](https://cloud.google.com/docs/authentication/provide-credentials-adc) in the gcloud cli. 
-This is needed to authenticate for gcloud services like Cloud Storage.
+1. [Setup application default credentials](https://cloud.google.com/docs/authentication/provide-credentials-adc) in the
+	 gcloud cli.
+	 This is needed to authenticate for gcloud services like Cloud Storage.
 2. Copy the contents of `.env.example` to a new file `.env.local` (root project folder) and modify accordingly.
 3. Run these commands:
 
@@ -69,8 +71,8 @@ npm run dev -w client
 GitHub Actions are used for automatic code-checking.
 
 - On merge for the main branch:
-    - Run tests for the server
-    - Run a build for the server
+	- Run tests for the server
+	- Run a build for the server
 
 ## 🤚 Good to know
 
@@ -80,7 +82,8 @@ GitHub Actions are used for automatic code-checking.
 
 ### Workspaces
 
-We use npm workspaces to manage the monorepo. To install packages, run it in the root and specify which workspace you need it in like this:
+We use npm workspaces to manage the monorepo. To install packages, run it in the root and specify which workspace you
+need it in like this:
 
 ```shell
 npm i <package> -w server # To install <package> in the server workspace
@@ -90,6 +93,18 @@ npm run dev -w client # To run the dev command in the client workspace
 ### Dependabot
 
 We use Dependabot for automatic dependency updates
+
 - Creates a PRs for all outdated dependencies
 - Checks for NPM & GitHub Actions dependencies
 - Every monday at 6:00 (GMT+1)
+
+### Secrets
+
+The server has secrets (hasing keys, api keys etc.).
+These are stored in different for the different environments:
+
+- The development secrets are fetched from the `server/.env.local` file.
+- The testing secrets are fetched from the `.env.test` file.
+	- These are used in local tests & GitHub Actions
+	- Because this, they are checked into version control, make sure not to put actual credentials in this file!
+- The production secrets are fetched from GCP Secret Manager
