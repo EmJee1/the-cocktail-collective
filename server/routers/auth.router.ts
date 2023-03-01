@@ -62,6 +62,7 @@ POST(
 			lastName: req.body.lastName,
 			email: req.body.email,
 			password: passwordHash,
+			favorites: [],
 		})
 
 		return created(res, {

@@ -5,6 +5,7 @@ export interface User {
 	lastName: string
 	email: string
 	password: string
+	favorites: string[]
 }
 
 export type DbUser = WithId<User>

@@ -3,6 +3,7 @@ import express from 'express'
 import authRouter from './routers/auth.router'
 import recipeRouter from './routers/recipe.router'
 import assetRouter from './routers/asset.router'
+import favoriteRouter from './routers/favorite.router'
 import logger from './utils/logging.utils'
 import { valueForEnvironment } from './utils/environment.utils'
 import errorHandler from './middleware/error-handler.middleware'
@@ -21,6 +22,7 @@ app.use(express.json())
 app.use('/auth', authRouter)
 app.use('/recipe', recipeRouter)
 app.use('/asset', assetRouter)
+app.use('/favorite', favoriteRouter)
 
 app.use(errorHandler)
 

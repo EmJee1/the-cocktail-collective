@@ -1,4 +1,4 @@
-import type { ObjectId } from 'mongodb'
+import type { ObjectId, UpdateFilter } from 'mongodb'
 import type { User } from 'models/user'
 import mongo, { Collection } from './database'
 
@@ -16,4 +16,11 @@ export async function getUser(userId: ObjectId) {
 
 export async function getUserByEmail(email: string) {
 	return (await userCollection()).findOne({ email })
+}
+
+export async function updateUser(
+	userId: ObjectId,
+	update: UpdateFilter<User> | Partial<User>
+) {
+	return (await userCollection()).updateOne({ _id: userId }, update)
 }
