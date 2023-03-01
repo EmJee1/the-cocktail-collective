@@ -35,8 +35,10 @@ Provide links to external used tooling, like a Sketch, Jira, etc.
 
 <!-- How to install this project (after having the prerequisites)? -->
 
-[Setup application default credentials](https://cloud.google.com/docs/authentication/provide-credentials-adc) in the gcloud cli. 
+1. [Setup application default credentials](https://cloud.google.com/docs/authentication/provide-credentials-adc) in the gcloud cli. 
 This is needed to authenticate for gcloud services like Cloud Storage.
+2. Copy the contents of `.env.example` to a new file `.env.local` (root project folder) and modify accordingly.
+3. Run these commands:
 
 ```shell
 # Run the mongodb database locally with docker
