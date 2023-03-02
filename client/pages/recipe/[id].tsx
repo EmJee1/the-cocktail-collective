@@ -1,14 +1,5 @@
 import type { GetStaticPaths, GetStaticProps } from 'next'
-import NextImage from 'next/image'
 import { DbRecipe } from 'models/recipe'
-import Container from '@mui/material/Container'
-import Typography from '@mui/material/Typography'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemText from '@mui/material/ListItemText'
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import RecentlyViewedRecipes from '@/components/RecentlyViewedRecipes'
 
 interface RecipeProps {
 	recipe: DbRecipe
@@ -16,39 +7,13 @@ interface RecipeProps {
 
 export default function Recipe({ recipe }: RecipeProps) {
 	return (
-		<Container>
-			<Grid container spacing={4} sx={{ mt: '2rem' }}>
-				<Grid item xs={12} md={8}>
-					<Typography variant="h4" component="h1" sx={{ mb: '2rem' }}>
-						{recipe.name}
-					</Typography>
-					<Box
-						sx={{
-							aspectRatio: '1 / 1',
-							position: 'relative',
-							maxWidth: '80%',
-						}}
-					>
-						<NextImage
-							src={recipe.image.url}
-							alt={recipe.image.alt || ''}
-							style={{ objectFit: 'cover' }}
-							fill
-						/>
-					</Box>
-					<List>
-						{recipe.steps.map(step => (
-							<ListItem disableGutters key={step}>
-								<ListItemText primary={step} />
-							</ListItem>
-						))}
-					</List>
-				</Grid>
-				<Grid item xs={12} md={4}>
-					<RecentlyViewedRecipes />
-				</Grid>
-			</Grid>
-		</Container>
+		<div>
+			<h4>{recipe.name}</h4>
+			<img src={recipe.image.url} alt={recipe.image.alt || ''} />
+			{recipe.steps.map(step => (
+				<p key={step}>{step}</p>
+			))}
+		</div>
 	)
 }
 

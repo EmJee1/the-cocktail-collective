@@ -1,9 +1,5 @@
 import Head from 'next/head'
 import type { DbRecipe } from 'models/recipe'
-import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
-import RecipeCard from '@/components/RecipeCard'
 
 interface HomeProps {
 	recipes: DbRecipe[]
@@ -22,18 +18,14 @@ export default function Home({ recipes }: HomeProps) {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main>
-				<Container>
-					<Typography variant="h4" component="h1" sx={{ margin: '2rem 0' }}>
-						The Cocktail Collective
-					</Typography>
-					<Grid container spacing={2}>
-						{recipes.map(recipe => (
-							<Grid key={recipe._id.toString()} item xs={12} sm={6} md={4}>
-								<RecipeCard recipe={recipe} />
-							</Grid>
-						))}
-					</Grid>
-				</Container>
+				<h1>The Cocktail Collective</h1>
+				<div>
+					{recipes.map(recipe => (
+						<div key={recipe._id}>
+							<p>{recipe.name}</p>
+						</div>
+					))}
+				</div>
 			</main>
 		</>
 	)
