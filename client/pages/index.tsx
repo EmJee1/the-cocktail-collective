@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import type { DbRecipe } from 'models/recipe'
+import FeedItem from '@/components/FeedItem'
 
 interface HomeProps {
 	recipes: DbRecipe[]
@@ -18,12 +19,11 @@ export default function Home({ recipes }: HomeProps) {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main>
-				<h1>Feed!</h1>
-				{recipes.map(recipe => (
-					<div key={recipe._id}>
-						<p>{recipe.name}</p>
-					</div>
-				))}
+				<div className="flex flex-col gap-6">
+					{recipes.map(recipe => (
+						<FeedItem key={recipe._id} recipe={recipe} />
+					))}
+				</div>
 			</main>
 		</>
 	)
