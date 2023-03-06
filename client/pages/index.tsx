@@ -19,7 +19,7 @@ export default function Home({ recipes }: HomeProps) {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main>
-				<div className="flex flex-col gap-6">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 					{recipes.map(recipe => (
 						<FeedItem key={recipe._id} recipe={recipe} />
 					))}
