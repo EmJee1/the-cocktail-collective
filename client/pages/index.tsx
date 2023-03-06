@@ -18,14 +18,12 @@ export default function Home({ recipes }: HomeProps) {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main>
-				<h1>The Cocktail Collective</h1>
-				<div>
-					{recipes.map(recipe => (
-						<div key={recipe._id}>
-							<p>{recipe.name}</p>
-						</div>
-					))}
-				</div>
+				<h1>Feed!</h1>
+				{recipes.map(recipe => (
+					<div key={recipe._id}>
+						<p>{recipe.name}</p>
+					</div>
+				))}
 			</main>
 		</>
 	)
