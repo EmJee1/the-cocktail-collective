@@ -3,6 +3,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Fragment, type ReactNode } from 'react'
 import Logo from '@/components/Logo'
 import NavigationItem from '@/components/NavigationItem'
+import Header from '@/components/Header'
 
 const user = {
 	name: 'Tom Cook',
@@ -11,8 +12,8 @@ const user = {
 		'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 const navigation = [
-	{ name: 'Feed', href: '/', current: true },
-	{ name: 'Your Recipes', href: '/your-recipes', current: false },
+	{ name: 'Feed', href: '/' },
+	{ name: 'Your Recipes', href: '/your-recipes' },
 ]
 const userNavigation = [
 	{ name: 'Your Profile', href: '#' },
@@ -123,7 +124,6 @@ export default function Layout({ children }: { children: ReactNode }) {
 										key={item.name}
 										as={NavigationItem}
 										href={item.href}
-										aria-current={item.current ? 'page' : undefined}
 									>
 										{item.name}
 									</Disclosure.Button>
@@ -171,14 +171,10 @@ export default function Layout({ children }: { children: ReactNode }) {
 					</>
 				)}
 			</Disclosure>
-
-			<header className="bg-white shadow">
-				<div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
-					<h1 className="text-3xl font-bold tracking-tight text-gray-900">
-						Dashboard
-					</h1>
-				</div>
-			</header>
+			<Header
+				title="Your personal feed"
+				subtext="Stay in the know with the Collective's Newest Cocktails."
+			/>
 			<main>
 				<div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">{children}</div>
 			</main>
