@@ -58,7 +58,10 @@ POST(
 			_id: uniqueSlug(req.body.name),
 			name: req.body.name,
 			steps: req.body.steps,
-			image: req.body.image,
+			image: {
+				url: req.body.image.url,
+				alt: req.body.image.alt || `${req.body.name} cocktail`,
+			},
 			ingredients: [],
 			author: req.userId,
 			description: req.body.description,
