@@ -11,9 +11,12 @@ export default function FeedItem({ recipe }: RecipeFeedItemProps) {
 	const date = new Date()
 
 	return (
-		<Link href={`/recipe/${recipe._id}`}>
-			<article className="shadow-sm bg-white p-4 gap-4 rounded-xl flex flex-col md:flex-row hover:shadow-md transition-shadow">
-				<div className="relative w-44 h-44 aspect-square">
+		<Link
+			href={`/recipe/${recipe._id}`}
+			className="mx-auto w-full sm:max-w-md bg-white sm:rounded-xl shadow-sm hover:shadow-md transition-shadow"
+		>
+			<article className="max-w-md sm:max-w-none mx-auto flex flex-col gap-4 p-6 gap-4">
+				<div className="relative w-full aspect-square">
 					<Image
 						src={recipe.image.url}
 						alt={recipe.image.alt}
