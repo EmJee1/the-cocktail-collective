@@ -8,6 +8,11 @@ const nextConfig = {
 				hostname: 'storage.googleapis.com',
 				pathname: '/the-cocktail-collective-images/**',
 			},
+			{
+				protocol: 'https',
+				hostname: 'baconmockup.com',
+				pathname: '/300/300/**',
+			},
 		],
 	},
 }

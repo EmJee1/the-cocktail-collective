@@ -80,7 +80,7 @@ function generateRecipe(author: ObjectId): Recipe {
 		_id: slug,
 		name: cocktailName,
 		image: {
-			url: faker.image.food(250, 250),
+			url: 'https://baconmockup.com/300/300',
 			alt: `the ${cocktailName} cocktail`,
 		},
 		technique: faker.helpers.arrayElement([
@@ -90,7 +90,7 @@ function generateRecipe(author: ObjectId): Recipe {
 		description: faker.lorem.paragraphs(3),
 		ingredients: [],
 		steps: Array()
-			.fill(faker.datatype.number({ min: 2, max: 6 }))
+			.fill(faker.datatype.number({ min: 2, max: 4 }))
 			.map(() => faker.lorem.words(faker.datatype.number({ min: 3, max: 14 }))),
 		author,
 	}
@@ -109,6 +109,19 @@ function generateCocktailName() {
 		'Aperol Spritz',
 		'Mojito',
 		'Bloody Mary',
+		'Gimlet',
+		'Moscow Mule',
+		'Penicillin',
+		"Dark 'n Stormy",
+		'Corpse Reviver',
+		'Clover Club',
+		'Boulevardier',
+		'Mai Tai',
+		'Sazerac',
+		'French 75',
+		'Paloma',
+		'Pisco Sour',
+		'Vieux Carré',
 	] as const
 
 	return cocktails[Math.floor(Math.random() * cocktails.length)]
