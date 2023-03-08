@@ -2,8 +2,8 @@ import { faker } from '@faker-js/faker'
 import type { ObjectId } from 'mongodb'
 import readline from 'node:readline/promises'
 import type { User } from 'models/user'
-import type { Recipe } from 'models/recipe'
-import { Technique } from 'models/recipe'
+import type { Ingredient, Recipe } from 'models/recipe'
+import { Technique, VolumeUnit } from 'models/recipe'
 import { hashString } from '../utils/encrypt.utils'
 import mongo, { Collection } from '../repositories/database'
 import { uniqueSlug } from '../utils/slug.utils'
@@ -88,9 +88,11 @@ function generateRecipe(author: ObjectId): Recipe {
 			Technique.Shaken,
 		]),
 		description: faker.lorem.paragraphs(3),
-		ingredients: [],
-		steps: Array()
-			.fill(faker.datatype.number({ min: 2, max: 4 }))
+		ingredients: Array(faker.datatype.number({ min: 2, max: 6 }))
+			.fill(0)
+			.map(generateIngredient),
+		steps: Array(faker.datatype.number({ min: 2, max: 4 }))
+			.fill(0)
 			.map(() => faker.lorem.words(faker.datatype.number({ min: 3, max: 14 }))),
 		author,
 	}
@@ -125,4 +127,26 @@ function generateCocktailName() {
 	] as const
 
 	return cocktails[Math.floor(Math.random() * cocktails.length)]
+}
+
+function generateIngredient(): Ingredient {
+	const ingredients = [
+		'Rum',
+		'Scotch',
+		'Gin',
+		'Tequila',
+		'Simple Syrup',
+		'Lime Juice',
+		'Bourbon',
+		'Rose Water',
+	] as const
+	const values = [10, 15, 30, 45] as const
+
+	return {
+		name: ingredients[Math.floor(Math.random() * ingredients.length)],
+		volume: {
+			value: values[Math.floor(Math.random() * values.length)],
+			unit: VolumeUnit.Milliliter,
+		},
+	}
 }
