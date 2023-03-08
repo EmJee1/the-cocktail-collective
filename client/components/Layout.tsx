@@ -1,16 +1,20 @@
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Fragment, type ReactNode } from 'react'
+import type { DbUser } from 'models/user'
 import Logo from '@/components/Logo'
 import NavigationItem from '@/components/NavigationItem'
 import Header from '@/components/Header'
+import Avatar from '@/components/Avatar'
 
 const user = {
-	name: 'Tom Cook',
-	email: 'tom@example.com',
-	imageUrl:
-		'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
+	_id: '6407002919db485304abd983',
+	firstName: 'Bryant',
+	lastName: 'Conroy',
+	password: '$2b$10$28726tDVmvXUIzAELKiRhuDq5oQS9ZGjThtuY2W2EnJPl.rsFRdlG',
+	email: 'Assunta12@gmail.com',
+	favorites: [],
+} as unknown as DbUser
 const navigation = [
 	{ name: 'Feed', href: '/' },
 	{ name: 'Your Recipes', href: '/your-recipes' },
@@ -58,11 +62,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 											<div>
 												<Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
 													<span className="sr-only">Open user menu</span>
-													<img
-														className="h-8 w-8 rounded-full"
-														src={user.imageUrl}
-														alt=""
-													/>
+													<Avatar user={user} />
 												</Menu.Button>
 											</div>
 											<Transition
@@ -124,15 +124,11 @@ export default function Layout({ children }: { children: ReactNode }) {
 							<div className="border-t border-gray-700 pt-4 pb-3">
 								<div className="flex items-center px-5">
 									<div className="flex-shrink-0">
-										<img
-											className="h-10 w-10 rounded-full"
-											src={user.imageUrl}
-											alt=""
-										/>
+										<Avatar user={user} />
 									</div>
 									<div className="ml-3">
 										<div className="text-base font-medium leading-none text-white">
-											{user.name}
+											{user.firstName} {user.lastName}
 										</div>
 										<div className="text-sm font-medium leading-none text-gray-400">
 											{user.email}
