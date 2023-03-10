@@ -6,12 +6,12 @@ export default function useZodForm(schema: Schema) {
 	type FormValues = z.infer<typeof schema>
 	const form = useForm<FormValues>({ resolver: zodResolver(schema) })
 
-	const error = getErrorMessage(form.formState)
+	const formError = getErrorMessage(form.formState)
 	const errorByName = getErrorMessagesByName(form.formState)
 
 	return {
 		...form,
-		error,
+		formError,
 		errorByName,
 	}
 }
