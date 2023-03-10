@@ -5,7 +5,7 @@ import Input from '@/components/Input'
 import Button from '@/components/Button'
 import Alert from '@/components/Alert'
 import useZodForm from '@/hooks/useZodForm'
-import { Post } from '@/utils/fetch'
+import { post } from '@/utils/fetch'
 import { setUserToken } from '@/utils/local-storage'
 
 const schema = z.object({
@@ -21,7 +21,7 @@ export default function Login() {
 	const onSubmit = handleSubmit(async values => {
 		setLoading(true)
 		setRequestError(null)
-		const response = await Post<{ token: string }>('/auth/login', {
+		const response = await post<{ token: string }>('/auth/login', {
 			email: values.email,
 			password: values.password,
 		})

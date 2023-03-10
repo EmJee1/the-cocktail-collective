@@ -12,7 +12,7 @@ type Response<T> = SuccessResponse<T> | ErrorResponse
 
 const API_BASE_URL = 'http://localhost:8080' as const
 
-export async function Post<T>(
+export async function post<T>(
 	path: `/${string}`,
 	body: Record<string, unknown>
 ): Promise<Response<T>> {
