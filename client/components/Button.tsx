@@ -1,3 +1,4 @@
+import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon'
 import { ReactNode } from 'react'
 
 interface ButtonProps {
@@ -16,13 +17,18 @@ export default function Button({
 	type = 'button',
 }: ButtonProps) {
 	let className =
-		'border rounded-md px-2 py-2 text-sm font-medium bg-indigo-600 text-white'
+		'relative border rounded-md p-2 text-sm font-medium bg-indigo-600 text-white overflow-hidden'
 	if (fullWidth) {
 		className += ' w-full'
 	}
 
 	return (
-		<button disabled={disabled} type={type} className={className}>
+		<button disabled={disabled || loading} type={type} className={className}>
+			{loading && (
+				<span className="bg-white text-black absolute inset-0 w-full h-full flex items-center justify-center">
+					<XCircleIcon className="w-6 h-6 animate-spin" />
+				</span>
+			)}
 			{children}
 		</button>
 	)

@@ -16,8 +16,10 @@ const schema = z.object({
 export default function Login() {
 	const { register, handleSubmit, formError, errorByName } = useZodForm(schema)
 	const [requestError, setRequestError] = useState<string | null>(null)
+	const [loading, setLoading] = useState(false)
 
 	const onSubmit = handleSubmit(async values => {
+		setLoading(true)
 		setRequestError(null)
 		const response = await Post<{ token: string }>('/auth/login', {
 			email: values.email,
@@ -26,10 +28,12 @@ export default function Login() {
 
 		if (!response.success) {
 			setRequestError(response.error)
+			setLoading(false)
 			return
 		}
 
 		setUserToken(response.data.token)
+		setLoading(false)
 	})
 
 	return (
@@ -51,7 +55,9 @@ export default function Login() {
 					register={register('password')}
 					error={errorByName.password}
 				/>
-				<Button type="submit">Sign in</Button>
+				<Button type="submit" loading={loading}>
+					Sign in
+				</Button>
 			</form>
 		</Card>
 	)
