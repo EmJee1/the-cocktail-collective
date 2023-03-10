@@ -25,7 +25,7 @@ export default function Button({
 	return (
 		<button disabled={disabled || loading} type={type} className={className}>
 			{loading && (
-				<span className="bg-white text-black absolute inset-0 w-full h-full flex items-center justify-center">
+				<span className="bg-white text-gray-800 absolute inset-0 w-full h-full flex items-center justify-center">
 					<XCircleIcon className="w-6 h-6 animate-spin" />
 				</span>
 			)}
