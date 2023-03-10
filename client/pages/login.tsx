@@ -4,7 +4,7 @@ import Card from '@/components/Card'
 import Input from '@/components/Input'
 import Button from '@/components/Button'
 import Alert from '@/components/Alert'
-import useZodForm from '@/hooks/useZodForm'
+import useZodForm from '@/hooks/use-zod-form'
 import { post } from '@/utils/fetch'
 import { setUserToken } from '@/utils/local-storage'
 
