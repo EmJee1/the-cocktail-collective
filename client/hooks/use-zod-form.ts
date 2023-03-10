@@ -2,12 +2,14 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { type FieldValues, type FormState, useForm } from 'react-hook-form'
 import { z, type Schema } from 'zod'
 
-export default function useZodForm(schema: Schema) {
+export default function useZodForm<T extends FieldValues>(schema: Schema<T>) {
 	type FormValues = z.infer<typeof schema>
-	const form = useForm<FormValues>({ resolver: zodResolver(schema) })
+	const form = useForm<FormValues>({
+		resolver: zodResolver(schema),
+	})
 
 	const formError = getErrorMessage(form.formState)
-	const errorByName = getErrorMessagesByName(form.formState)
+	const errorByName = getErrorMessagesByName<FormValues>(form.formState)
 
 	return {
 		...form,
@@ -35,7 +37,7 @@ function getErrorMessage(formState: FormState<any>) {
 
 function getErrorMessagesByName<T extends FieldValues>(
 	formState: FormState<T>
-): Record<string, string> {
+): Record<keyof T, string> {
 	const fields = Object.entries(formState.errors)
 	return Object.fromEntries(
 		fields
