@@ -1,20 +1,12 @@
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Fragment, type ReactNode } from 'react'
-import type { DbUser } from 'models/user'
+import { Fragment, type ReactNode, useContext } from 'react'
 import Logo from '@/components/Logo'
 import NavigationItem from '@/components/NavigationItem'
 import Header from '@/components/Header'
 import Avatar from '@/components/Avatar'
+import userContext from '@/context/user-context'
 
-const user = {
-	_id: '6407002919db485304abd983',
-	firstName: 'Bryant',
-	lastName: 'Conroy',
-	password: '$2b$10$28726tDVmvXUIzAELKiRhuDq5oQS9ZGjThtuY2W2EnJPl.rsFRdlG',
-	email: 'Assunta12@gmail.com',
-	favorites: [],
-} as unknown as DbUser
 const navigation = [
 	{ name: 'Feed', href: '/' },
 	{ name: 'Your Recipes', href: '/your-recipes' },
@@ -30,6 +22,8 @@ function classNames(...classes: string[]) {
 }
 
 export default function Layout({ children }: { children: ReactNode }) {
+	const { user, loading } = useContext(userContext)
+
 	return (
 		<div className="min-h-full">
 			<Disclosure as="nav" className="bg-gray-800">
@@ -127,12 +121,12 @@ export default function Layout({ children }: { children: ReactNode }) {
 										<Avatar user={user} />
 									</div>
 									<div className="ml-3">
-										<div className="text-base font-medium leading-none text-white">
-											{user.firstName} {user.lastName}
-										</div>
-										<div className="text-sm font-medium leading-none text-gray-400">
-											{user.email}
-										</div>
+										{/*<div className="text-base font-medium leading-none text-white">*/}
+										{/*	{user.firstName} {user.lastName}*/}
+										{/*</div>*/}
+										{/*<div className="text-sm font-medium leading-none text-gray-400">*/}
+										{/*	{user.email}*/}
+										{/*</div>*/}
 									</div>
 								</div>
 								<div className="mt-3 space-y-1 px-2">

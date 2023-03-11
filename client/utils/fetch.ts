@@ -1,30 +1,39 @@
-interface SuccessResponse<T> {
+import { getUserToken } from '@/utils/local-storage'
+
+interface ApiSuccessResponse<T> {
 	data: T
 	success: true
 }
 
-interface ErrorResponse {
+interface ApiErrorResponse {
 	error: string
 	success: false
 }
 
-type Response<T> = SuccessResponse<T> | ErrorResponse
+type ApiResponse<T> = ApiSuccessResponse<T> | ApiErrorResponse
 
 const API_BASE_URL = 'http://localhost:8080' as const
 
-export async function post<T>(
+export async function apiRequest<T>(
 	path: `/${string}`,
-	body: Record<string, unknown>
-): Promise<Response<T>> {
+	method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE',
+	body?: Record<string, unknown>
+): Promise<ApiResponse<T>> {
 	try {
-		const res = await fetch(`${API_BASE_URL}${path}`, {
-			body: JSON.stringify(body),
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		})
+		const token = getUserToken()
 
+		const headers: Record<string, string> = {
+			'Content-Type': 'application/json',
+		}
+		if (token) {
+			headers.authorization = `Bearer ${token}`
+		}
+
+		const res = await fetch(API_BASE_URL + path, {
+			body: body ? JSON.stringify(body) : undefined,
+			method,
+			headers,
+		})
 		const json = await res.json()
 
 		if (!res.ok) {
