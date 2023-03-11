@@ -1,12 +1,12 @@
 import { z } from 'zod'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Card from '@/components/Card'
 import Input from '@/components/Input'
 import Button from '@/components/Button'
 import Alert from '@/components/Alert'
 import useZodForm from '@/hooks/use-zod-form'
 import { apiRequest } from '@/utils/fetch'
-import { setUserToken } from '@/utils/local-storage'
+import UserContext from '@/context/user-context'
 
 const schema = z.object({
 	email: z.string().email(),
@@ -15,6 +15,7 @@ const schema = z.object({
 
 export default function Login() {
 	const { register, handleSubmit, formError, errorByName } = useZodForm(schema)
+	const { setToken } = useContext(UserContext)
 	const [requestError, setRequestError] = useState<string | null>(null)
 	const [loading, setLoading] = useState(false)
 
@@ -33,7 +34,8 @@ export default function Login() {
 			return
 		}
 
-		setUserToken(response.data.token)
+		console.log('Got the token:', response.data.token)
+		setToken(response.data.token)
 		setLoading(false)
 	})
 

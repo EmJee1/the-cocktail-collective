@@ -9,3 +9,7 @@ export function setUserToken(token: string) {
 export function getUserToken() {
 	return localStorage.getItem(LocalStorageKey.Token)
 }
+
+export function removeUserToken() {
+	localStorage.removeItem(LocalStorageKey.Token)
+}
