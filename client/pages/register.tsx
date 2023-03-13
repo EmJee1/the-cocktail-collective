@@ -7,6 +7,7 @@ import { apiRequest } from '@/utils/fetch'
 import { useContext, useState } from 'react'
 import Alert from '@/components/Alert'
 import UserContext from '@/context/user-context'
+import Link from 'next/link'
 
 const schema = z.object({
 	firstName: z.string().nonempty(),
@@ -71,6 +72,12 @@ export default function Register() {
 					Register
 				</Button>
 			</form>
+			<p className="mt-4 block">
+				Already have an account?&nbsp;
+				<Link href="/login" className="text-indigo-600 underline">
+					Sign in
+				</Link>
+			</p>
 		</Card>
 	)
 }

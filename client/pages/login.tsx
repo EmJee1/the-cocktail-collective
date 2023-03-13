@@ -8,6 +8,7 @@ import useZodForm from '@/hooks/use-zod-form'
 import { apiRequest } from '@/utils/fetch'
 import UserContext from '@/context/user-context'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 const schema = z.object({
 	email: z.string().email(),
@@ -69,6 +70,12 @@ export default function Login() {
 					Sign in
 				</Button>
 			</form>
+			<p className="mt-4 block">
+				Don&#39;t have an account already?&nbsp;
+				<Link href="/register" className="text-indigo-600 underline">
+					Register now
+				</Link>
+			</p>
 		</Card>
 	)
 }
