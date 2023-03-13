@@ -1,6 +1,5 @@
 provider "google" {
   project = "the-cocktail-collective"
-  credentials = file("service-account.json")
   region = "europe-west4"
 }
 
