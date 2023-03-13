@@ -88,9 +88,14 @@ export default function Layout({ children }: { children: ReactNode }) {
 												</Transition>
 											</Menu>
 										) : (
-											<NavigationItem href="/login" largeScreen>
-												Login
-											</NavigationItem>
+											<div className="space-x-4">
+												<NavigationItem href="/register" largeScreen>
+													Register
+												</NavigationItem>
+												<NavigationItem href="/login" largeScreen>
+													Sign in
+												</NavigationItem>
+											</div>
 										)}
 									</div>
 								</div>
