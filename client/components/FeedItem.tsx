@@ -12,8 +12,8 @@ export default function FeedItem({ recipe }: RecipeFeedItemProps) {
 	const date = new Date()
 
 	return (
-		<Link href={`/recipe/${recipe._id}`} className="">
-			<Card className="w-full sm:max-w-md hover:shadow-md transition-shadow">
+		<Link href={`/recipe/${recipe._id}`} className="sm:max-w-md w-full mx-auto">
+			<Card className="hover:shadow-md transition-shadow">
 				<article className="max-w-md sm:max-w-none mx-auto flex flex-col gap-4 p-6 gap-4">
 					<div className="relative w-full aspect-square">
 						<Image
