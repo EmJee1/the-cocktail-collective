@@ -80,6 +80,10 @@ GitHub Actions are used for automatic code-checking.
   A place to provide extra information (or links to it) about the project.
 -->
 
+### Terraform
+
+We use Terraform for infrastructure as code. To deploy changes you need a service-account file.
+
 ### Workspaces
 
 We use npm workspaces to manage the monorepo. To install packages, run it in the root and specify which workspace you
