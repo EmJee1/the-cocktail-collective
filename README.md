@@ -74,6 +74,8 @@ GitHub Actions are used for automatic code-checking.
 	- Run tests for the server
 	- Run a build for the server
 
+For infrastructure deployments see [Terraform](#Terraform)
+
 ## 🤚 Good to know
 
 <!-- 
@@ -104,11 +106,11 @@ We use Dependabot for automatic dependency updates
 
 ### Secrets
 
-The server has secrets (hasing keys, api keys etc.).
+The server has secrets (hashing keys, api keys etc.).
 These are stored in different for the different environments:
 
 - The development secrets are fetched from the `server/.env.local` file.
 - The testing secrets are fetched from the `.env.test` file.
 	- These are used in local tests & GitHub Actions
-	- Because this, they are checked into version control, make sure not to put actual credentials in this file!
+	- Because of this, they are checked into version control, make sure not to put actual credentials in this file!
 - The production secrets are fetched from GCP Secret Manager
