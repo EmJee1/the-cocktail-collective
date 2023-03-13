@@ -84,7 +84,7 @@ For infrastructure deployments see [Terraform](#Terraform)
 
 ### Terraform
 
-We use Terraform for infrastructure as code. To deploy changes you need a service-account file.
+We use Terraform for infrastructure as code. Authentication from Terraform to Google Cloud is done via ADC, see [setting up ADC](#installation).
 
 ### Workspaces
 
