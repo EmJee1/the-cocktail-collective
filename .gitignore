@@ -8,3 +8,7 @@ out/
 .vercel
 next-env.d.ts
 .DS_Store
+service-account.json
+**/.terraform/*
+*.tfstate
+*.tfstate.*
