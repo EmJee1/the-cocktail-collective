@@ -65,8 +65,10 @@ POST(
 			favorites: [],
 		})
 
+		const token = await signJwt({ _id: result.insertedId })
+
 		return created(res, {
-			id: result.insertedId,
+			token,
 		})
 	}
 )

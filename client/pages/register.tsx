@@ -3,9 +3,10 @@ import Input from '@/components/Input'
 import useZodForm from '@/hooks/use-zod-form'
 import Card from '@/components/Card'
 import Button from '@/components/Button'
-import { post } from '@/utils/fetch'
-import { useState } from 'react'
+import { apiRequest } from '@/utils/fetch'
+import { useContext, useState } from 'react'
 import Alert from '@/components/Alert'
+import UserContext from '@/context/user-context'
 
 const schema = z.object({
 	firstName: z.string().nonempty(),
@@ -16,13 +17,18 @@ const schema = z.object({
 
 export default function Register() {
 	const { formError, register, handleSubmit } = useZodForm(schema)
+	const { setToken } = useContext(UserContext)
 	const [requestError, setRequestError] = useState<string | null>(null)
 	const [loading, setLoading] = useState(false)
 
 	const onSubmit = handleSubmit(async values => {
 		setLoading(true)
 		setRequestError(null)
-		const response = await post('/auth/register', values)
+		const response = await apiRequest<{ token: string }>(
+			'/auth/register',
+			'POST',
+			values
+		)
 
 		if (!response.success) {
 			setRequestError(response.error)
@@ -31,6 +37,7 @@ export default function Register() {
 		}
 
 		setLoading(false)
+		setToken(response.data.token)
 	})
 
 	return (
