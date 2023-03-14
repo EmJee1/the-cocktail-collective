@@ -10,7 +10,6 @@ resource "google_storage_bucket" "images" {
 }
 
 resource "google_storage_bucket_iam_member" "member" {
-  provider = google
   bucket   = google_storage_bucket.images.name
   role     = "roles/storage.objectViewer"
   member   = "allUsers"
