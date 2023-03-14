@@ -107,7 +107,7 @@ We use Dependabot for automatic dependency updates
 ### Secrets
 
 The server has secrets (hashing keys, api keys etc.).
-These are stored in different for the different environments:
+These are stored in different locations for the different environments:
 
 - The development secrets are fetched from the `server/.env.local` file.
 - The testing secrets are fetched from the `.env.test` file.
