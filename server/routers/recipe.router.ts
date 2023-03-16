@@ -10,6 +10,7 @@ import {
 import authenticated from '../middleware/authenticated.middleware'
 import { STORAGE_BUCKET_URL } from '../utils/storage.utils'
 import { uniqueSlug } from '../utils/slug.utils'
+import { getRequestUserId } from '../utils/request-properties.utils'
 
 const { router, GET, POST } = createRouter()
 
@@ -63,7 +64,7 @@ POST(
 				alt: req.body.image.alt || `${req.body.name} cocktail`,
 			},
 			ingredients: [],
-			author: req.userId,
+			author: getRequestUserId(req),
 			description: req.body.description,
 			technique: req.body.technique,
 		}

@@ -2,7 +2,7 @@ import type { Request } from 'express'
 import type { DbUser } from 'models/user'
 import { getUser } from '../repositories/user.repository'
 
-export function getRequestUserId(req: Request) {
+export function getRequestUserId(req: Request<any, any, any, any, any>) {
 	if (!req.userId) {
 		throw new Error('UserId is not defined on request')
 	}
