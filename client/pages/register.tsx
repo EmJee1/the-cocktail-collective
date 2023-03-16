@@ -72,7 +72,7 @@ export default function Register() {
 					Register
 				</Button>
 			</form>
-			<p className="mt-4 block">
+			<p className="mt-4 block text-sm">
 				Already have an account?&nbsp;
 				<Link href="/login" className="text-indigo-600 underline">
 					Sign in

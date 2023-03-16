@@ -70,7 +70,7 @@ export default function Login() {
 					Sign in
 				</Button>
 			</form>
-			<p className="mt-4 block">
+			<p className="mt-4 block text-sm">
 				Don&#39;t have an account already?&nbsp;
 				<Link href="/register" className="text-indigo-600 underline">
 					Register now
