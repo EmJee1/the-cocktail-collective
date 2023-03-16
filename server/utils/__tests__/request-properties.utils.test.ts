@@ -2,11 +2,12 @@ import { createRequest } from 'node-mocks-http'
 import { ObjectId } from 'mongodb'
 import type { DbUser, User } from 'models/user'
 import { getRequestUser, getRequestUserId } from '../request-properties.utils'
-import mongo, { Collection } from '../../repositories/database'
+import mongo, { closeConnection, Collection } from '../../repositories/database'
 import { insertUser } from '../../repositories/user.repository'
 
 afterAll(async () => {
 	await (await mongo()).dropCollection(Collection.Users)
+	await closeConnection()
 })
 
 describe('request-properties', () => {

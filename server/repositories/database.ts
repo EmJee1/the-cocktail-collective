@@ -1,23 +1,28 @@
-import { Db, MongoClient } from 'mongodb'
+import { MongoClient } from 'mongodb'
 import { getSecretString } from '../utils/secrets.utils'
 import { Secret } from '../utils/secrets.utils'
 import { valueForEnvironment } from '../utils/environment.utils'
 
-let client: Db
+let connection: MongoClient | null = null
 
 export default async function mongo() {
-	if (!client) {
+	if (!connection) {
 		const mongoUrl = await getSecretString(Secret.MongoUrl)
-		const database = valueForEnvironment({
-			development: 'the-cocktail-collective',
-			production: 'the-cocktail-collective',
-			test: 'the-cocktail-collective-tests',
-		})
-
-		client = new MongoClient(mongoUrl).db(database)
+		connection = new MongoClient(mongoUrl)
 	}
 
-	return client
+	const database = valueForEnvironment({
+		development: 'the-cocktail-collective',
+		production: 'the-cocktail-collective',
+		test: 'the-cocktail-collective-tests',
+	})
+
+	return connection.db(database)
+}
+
+export async function closeConnection() {
+	await connection?.close()
+	connection = null
 }
 
 export enum Collection {
