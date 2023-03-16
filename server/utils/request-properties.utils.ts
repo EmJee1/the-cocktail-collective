@@ -2,7 +2,9 @@ import type { Request } from 'express'
 import type { DbUser } from 'models/user'
 import { getUser } from '../repositories/user.repository'
 
-export function getRequestUserId(req: Request<any, any, any, any, any>) {
+type AnyRequest = Request<any, any, any, any, any>
+
+export function getRequestUserId(req: AnyRequest) {
 	if (!req.userId) {
 		throw new Error('UserId is not defined on request')
 	}
@@ -10,7 +12,7 @@ export function getRequestUserId(req: Request<any, any, any, any, any>) {
 	return req.userId
 }
 
-export async function getRequestUser(req: Request): Promise<DbUser> {
+export async function getRequestUser(req: AnyRequest): Promise<DbUser> {
 	if (req.user) {
 		return req.user
 	}
