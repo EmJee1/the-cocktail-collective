@@ -4,10 +4,10 @@
   "main": "src/app.ts",
   "scripts": {
     "start": "tsc",
-    "dev": "cross-env NODE_ENV=development nodemon",
-    "test": "cross-env NODE_ENV=test npx jest",
-    "test:watch": "cross-env NODE_ENV=test npx jest --watchAll .",
-    "seed": "cross-env NODE_ENV=development ts-node scripts/seed.ts"
+    "dev": "nodemon --environment development",
+    "test": "npx jest",
+    "test:watch": "npx jest --watchAll",
+    "seed": "ts-node scripts/seed.ts --environment development"
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",

@@ -5,7 +5,8 @@ export enum Environment {
 }
 
 export function getEnvironment() {
-	const env = process.env.NODE_ENV
+	const environmentFlagIndex = process.argv.indexOf('--environment')
+	const env = process.argv[environmentFlagIndex + 1]
 	switch (env) {
 		case Environment.Development:
 			return Environment.Development
