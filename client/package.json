@@ -21,7 +21,7 @@
     "next": "13.4.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "^7.43.9",
+    "react-hook-form": "^7.44.2",
     "typescript": "5.0.4",
     "zod": "^3.21.4"
   },
