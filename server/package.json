@@ -10,7 +10,7 @@
     "seed": "ts-node scripts/seed.ts --environment development"
   },
   "dependencies": {
-    "@faker-js/faker": "^7.6.0",
+    "@faker-js/faker": "^8.2.0",
     "@google-cloud/logging-winston": "^5.3.0",
     "@google-cloud/secret-manager": "^4.2.2",
     "@google-cloud/storage": "^6.11.0",
